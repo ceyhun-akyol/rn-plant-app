@@ -1,10 +1,10 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react';
 import Config from 'react-native-config';
 
 import StorybookUIRoot from '../.storybook/Storybook';
 
-import {StatusBar, useColorScheme} from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
 
 import {
   DebugInstructions,
@@ -27,12 +27,12 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
+function Section({ children, title }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <SectionContainer>
-      <SectionTitle theme={{isDarkMode}}>{title}</SectionTitle>
-      <SectionDescription theme={{isDarkMode}}>{children}</SectionDescription>
+      <SectionTitle theme={{ isDarkMode }}>{title}</SectionTitle>
+      <SectionDescription theme={{ isDarkMode }}>{children}</SectionDescription>
     </SectionContainer>
   );
 }
@@ -45,16 +45,16 @@ function App(): JSX.Element {
   }
 
   return (
-    <StyledSafeAreaView theme={{isDarkMode}}>
+    <StyledSafeAreaView theme={{ isDarkMode }}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={isDarkMode ? '#1C1C1E' : '#F3F3F3'}
       />
       <StyledScrollView
         contentInsetAdjustmentBehavior="automatic"
-        theme={{isDarkMode}}>
+        theme={{ isDarkMode }}>
         <Header />
-        <ContentContainer theme={{isDarkMode}}>
+        <ContentContainer theme={{ isDarkMode }}>
           <Section title="Step One">
             Edit <Highlight>App.tsx</Highlight> to change this screen and then
             come back to see your edits.
