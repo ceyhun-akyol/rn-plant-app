@@ -1,12 +1,9 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
+import Config from 'react-native-config';
+
+import StorybookUIRoot from './.storybook/Storybook';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -57,6 +54,10 @@ function Section({children, title}: SectionProps): JSX.Element {
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+
+  if (Config.SHOW_STORYBOOK === 'true') {
+    return <StorybookUIRoot />;
+  }
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
