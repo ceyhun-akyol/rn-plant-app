@@ -2,7 +2,7 @@ import {
   createAction,
   createAsyncAction,
   createAsyncTypes,
-} from 'src/lib/reduxUtils';
+} from '@lib/reduxUtils';
 
 export const LOGOUT = 'auth/logout';
 export const logout = createAction(LOGOUT);

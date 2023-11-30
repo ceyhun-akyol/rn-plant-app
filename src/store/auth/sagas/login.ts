@@ -1,7 +1,7 @@
 import Debug from 'debug';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import API from 'services/API';
+import API from '@services/API';
 
 import { LOGIN, login } from '../actions';
 

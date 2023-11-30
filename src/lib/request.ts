@@ -2,8 +2,6 @@ import Debug from 'debug';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
-import isOnline from 'lib/isOnline';
-
 const debug = Debug('reactNativeBoilerplateSetup:lib:request');
 const LINEAR_RETRY_DELAY_MS = 1000;
 
@@ -35,7 +33,7 @@ const createInstance = (baseConfig = {}) => {
 
       // If we failed to reach the server
       if (!error.response) {
-        const isUserOnline = await isOnline();
+        const isUserOnline = true; // TODO await isOnline();
         error.isConnectivityError = !isUserOnline;
       }
 

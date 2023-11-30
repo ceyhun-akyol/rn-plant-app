@@ -1,6 +1,6 @@
 import { camelizeKeys } from 'humps';
 import Config from 'react-native-config';
-import Request from 'lib/request';
+import Request from '@lib/request';
 
 type RequestConfig = {
   url: string;
@@ -18,7 +18,6 @@ const requestInstance = Request.createInstance({
   withCredentials: true,
 });
 
-// Add types for the parameters
 export const request = async (config: RequestConfig, token?: string) =>
   requestInstance({
     ...config,
