@@ -1,11 +1,11 @@
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser for TypeScript
+  parser: '@typescript-eslint/parser',
   extends: [
     '@react-native',
     'airbnb',
     'airbnb/hooks',
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
   plugins: [
@@ -13,14 +13,18 @@ module.exports = {
     'react-hooks',
     'jsx-a11y',
     'prettier',
-    '@typescript-eslint' // Use the TypeScript plugin
+    '@typescript-eslint',
+    'jest',
   ],
+  env: {
+    'jest/globals': true,
+  },
   rules: {
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'react/prop-types': 'off', // You can disable this rule if you're using TypeScript
+    'react/prop-types': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -29,7 +33,7 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
-      }, // Ensure this is the same as in your tsconfig.json
+      },
     ],
   },
   settings: {
