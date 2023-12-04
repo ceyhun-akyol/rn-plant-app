@@ -5,8 +5,8 @@ import Request from '@lib/request';
 type RequestConfig = {
   url: string;
   method: string;
-  data?: any;
-  headers?: any;
+  data?: object;
+  headers?: object;
 };
 
 type LoginResponse = {
@@ -14,24 +14,20 @@ type LoginResponse = {
 };
 
 const requestInstance = Request.createInstance({
-  baseURL: Config.apiUrl,
+  baseURL: 'https://5fc9346b2af77700165ae514.mockapi.io',
   withCredentials: true,
 });
 
-export const request = async (config: RequestConfig, token?: string) =>
+export const request = async (config: RequestConfig) =>
   requestInstance({
     ...config,
-    headers: {
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
   });
 
 const API = {
-  login: async (code: string): Promise<LoginResponse> => {
+  getList: async (): Promise<LoginResponse> => {
     const response = await request({
-      url: '/login',
-      method: 'post',
-      data: { code },
+      url: '/products',
+      method: 'get',
     });
 
     return camelizeKeys(response.data) as LoginResponse;

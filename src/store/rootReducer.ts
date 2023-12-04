@@ -1,13 +1,15 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import auth from './auth/reducer';
+import list from './list/reducer';
+import cart from './cart/reducer';
 
 export const appReducer = combineReducers({
-  auth,
+  list,
+  cart,
 });
 
 const rootReducer = (state: any, action: any) => {
-  let updatedState = state;
+  const updatedState = state;
   return appReducer(updatedState, action);
 };
 

@@ -45,7 +45,7 @@ type ActionOptions = {
 type Action = {
   descriptor: string;
   log: boolean;
-  payload: any;
+  payload?: any;
   type: string;
   originalAction?: any;
 };
