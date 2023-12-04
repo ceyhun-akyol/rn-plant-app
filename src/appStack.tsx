@@ -1,28 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
-import { View, Image, ImageBackground, Text } from 'react-native';
+import { View, Image } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// eslint-disable-next-line import/no-unresolved
-import Header from '@components/Header';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useSelector } from 'react-redux';
-import { selectCartItems } from '@store/cart/selectors';
 
 // screens
 import ListPage from './screens/List';
-import DetailPage from './screens/Detail';
-import CartPage, { CartItemType } from './screens/Cart';
+import IntroPage from './screens/Intro';
+import PremiumPage from './screens/Premium';
 
 // assets
-import HomeIcon from './resources/icons/home.png';
-import CartIcon from './resources/icons/cart.png';
-import Star3Icon from './resources/icons/star3.png';
-import ProfileIcon from './resources/icons/profile.png';
+import HomeIcon from './resources/icons/HomeIcon.png';
+import DiagnoseIcon from './resources/icons/DiagnoseIcon.png';
+import ScanButtonIcon from './resources/icons/ScanButtonIcon.png';
+import MyGardenIcon from './resources/icons/MyGardenIcon.png';
+import ProfileIcon from './resources/icons/ProfileIcon.png';
 
 export type RootStackParamList = {
   List: undefined;
-  ListDetail: undefined;
+  Intro: undefined;
+  Premium: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -30,10 +28,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
 const iconStyle = { height: 28, width: 28 };
+const tabBarLabelStyle = { top: -4 };
 
 function TabsNavigation() {
-  const cartList = useSelector(selectCartItems);
-
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -42,40 +39,33 @@ function TabsNavigation() {
         options={{
           headerShown: false,
           tabBarIcon: () => <Image style={iconStyle} source={HomeIcon} />,
-          title: '',
+          title: 'Home',
+          tabBarLabelStyle: { ...tabBarLabelStyle, color: '#28AF6E' },
         }}
       />
       <Tab.Screen
         name="Cart"
-        component={CartPage}
+        component={() => <View />}
+        options={{
+          headerShown: false,
+          tabBarIcon: () => <Image style={iconStyle} source={DiagnoseIcon} />,
+          title: 'Diagnose',
+          tabBarLabelStyle,
+        }}
+      />
+      <Tab.Screen
+        name="QR"
+        component={() => <View />}
         options={{
           headerShown: false,
           tabBarIcon: () => (
-            <ImageBackground
-              style={{ ...iconStyle, alignItems: 'flex-end' }}
-              source={CartIcon}>
-              {cartList.length ? (
-                <View
-                  style={{
-                    backgroundColor: 'red',
-                    height: 22,
-                    width: 22,
-                    borderRadius: 15,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      color: 'white',
-                    }}>{`${cartList.length}`}</Text>
-                </View>
-              ) : (
-                ''
-              )}
-            </ImageBackground>
+            <Image
+              style={{ height: 64, width: 74, top: -10 }}
+              source={ScanButtonIcon}
+            />
           ),
           title: '',
+          tabBarLabelStyle,
         }}
       />
       <Tab.Screen
@@ -83,8 +73,9 @@ function TabsNavigation() {
         component={() => <View />}
         options={{
           headerShown: false,
-          tabBarIcon: () => <Image style={iconStyle} source={Star3Icon} />,
-          title: '',
+          tabBarIcon: () => <Image style={iconStyle} source={MyGardenIcon} />,
+          title: 'My Garden',
+          tabBarLabelStyle,
         }}
       />
       <Tab.Screen
@@ -93,7 +84,8 @@ function TabsNavigation() {
         options={{
           headerShown: false,
           tabBarIcon: () => <Image style={iconStyle} source={ProfileIcon} />,
-          title: '',
+          title: 'Profile',
+          tabBarLabelStyle,
         }}
       />
     </Tab.Navigator>
@@ -105,20 +97,24 @@ function AppStack() {
     <Stack.Navigator
       initialRouteName="List"
       screenOptions={{
-        headerShadowVisible: true,
-        statusBarColor: '#1d56ff',
-        navigationBarColor: '#1d56ff',
-        header: Header,
+        headerShadowVisible: false,
+        navigationBarColor: '#fffff',
+        statusBarColor: '#fffff',
       }}>
       <Stack.Screen
         name="List"
         component={TabsNavigation}
-        options={{ title: "User's Lists" }}
+        options={{ title: '', headerShown: false }}
       />
       <Stack.Screen
-        name="ListDetail"
-        component={DetailPage}
-        options={{ title: 'User Detail' }}
+        name="Intro"
+        component={IntroPage}
+        options={{ title: '', headerShown: false }}
+      />
+      <Stack.Screen
+        name="Premium"
+        component={PremiumPage}
+        options={{ title: '', headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -1,6 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import { camelizeKeys } from 'humps';
-import Config from 'react-native-config';
 import Request from '@lib/request';
+import { CategoryType, QuestionType } from 'src/types';
 
 type RequestConfig = {
   url: string;
@@ -9,12 +10,8 @@ type RequestConfig = {
   headers?: object;
 };
 
-type LoginResponse = {
-  token: string;
-};
-
 const requestInstance = Request.createInstance({
-  baseURL: 'https://5fc9346b2af77700165ae514.mockapi.io',
+  baseURL: 'https://dummy-api-jtg6bessta-ey.a.run.app',
   withCredentials: true,
 });
 
@@ -24,13 +21,22 @@ export const request = async (config: RequestConfig) =>
   });
 
 const API = {
-  getList: async (): Promise<LoginResponse> => {
+  getCategory: async (): Promise<CategoryType[]> => {
     const response = await request({
-      url: '/products',
+      url: '/getCategories',
       method: 'get',
     });
 
-    return camelizeKeys(response.data) as LoginResponse;
+    return camelizeKeys(response.data.data) as CategoryType[];
+  },
+
+  getQuestions: async (): Promise<QuestionType[]> => {
+    const response = await request({
+      url: '/getQuestions',
+      method: 'get',
+    });
+
+    return camelizeKeys(response.data) as QuestionType[];
   },
 };
 

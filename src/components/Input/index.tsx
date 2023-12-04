@@ -32,7 +32,7 @@ function Input(props: InputProps) {
         style={styles.input}
         value={text}
         onChange={onChange}
-        placeholder="Search"
+        placeholder="Search for plants"
       />
     </View>
   );

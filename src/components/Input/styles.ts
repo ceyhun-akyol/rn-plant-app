@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#fafafb',
     marginBottom: 10,
+    borderRadius: 12,
   },
   input: {
     color: '#606b8e',

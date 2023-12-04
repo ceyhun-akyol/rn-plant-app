@@ -1,11 +1,13 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import list from './list/reducer';
-import cart from './cart/reducer';
+import settings from './settings/reducer';
+import categories from './categories/reducer';
+import questions from './questions/reducer';
 
 export const appReducer = combineReducers({
-  list,
-  cart,
+  settings,
+  questions,
+  categories,
 });
 
 const rootReducer = (state: any, action: any) => {
